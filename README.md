@@ -22,3 +22,6 @@ Alternatively you can use the [Spring Boot Maven plugin](https://docs.spring.io/
 ```shell
 mvn spring-boot:run
 ```
+
+## Useful Resources
+[Central Maven Repository](https://mvnrepository.com/repos/central)
