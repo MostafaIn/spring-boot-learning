@@ -13,8 +13,10 @@
       <h2> Grade Portal </h2>
       <form method="post" th:object="${grade}" th:action="@{/handleSubmit}"> 
         <input type="text" placeholder="Name" th:field="*{name}">
+        <span style="color:red" th:errors="*{name}"></span>
         <input type="text" placeholder="Score" th:field="*{score}">  
         <input type="text" placeholder="Subject" th:field="*{subject}">
+        <span style="color:red" th:errors="*{subject}"></span>
         <input type="hidden" th:field="*{id}">
         <br><br>
         <input type="submit" value="Submit">

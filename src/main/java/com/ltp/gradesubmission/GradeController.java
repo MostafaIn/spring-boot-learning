@@ -26,7 +26,6 @@ public class GradeController {
 
     @PostMapping("/handleSubmit")
     public String submitForm(@Valid Grade grade, BindingResult result) {
-        System.out.println("Result" + result);
         if(result.hasErrors()) return "form";
         int index = getGradeIndex(grade.getId());
         if (index == Constants.NOT_FOUND) {
