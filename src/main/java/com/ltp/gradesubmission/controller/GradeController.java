@@ -13,11 +13,12 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import repository.GradeRepostory;
 
 @Controller
 public class GradeController {
 
-    List<Grade> studentGrades = new ArrayList<>();
+    GradeRepostory gradeRepostory = new GradeRepostory();
 
     @GetMapping("/")
     public String getForm(Model model, @RequestParam(required = false) String id) {
