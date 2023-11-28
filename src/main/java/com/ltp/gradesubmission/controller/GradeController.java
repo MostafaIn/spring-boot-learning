@@ -1,10 +1,12 @@
-package com.ltp.gradesubmission;
+package com.ltp.gradesubmission.controller;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
 
+import com.ltp.gradesubmission.Constants;
+import com.ltp.gradesubmission.Grade;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
