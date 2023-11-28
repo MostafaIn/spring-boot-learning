@@ -14,16 +14,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import repository.GradeRepostory;
+import service.GradeService;
 
 @Controller
 public class GradeController {
 
-    GradeRepostory gradeRepostory = new GradeRepostory();
+    GradeService gradeService = new GradeService();
 
     @GetMapping("/")
     public String getForm(Model model, @RequestParam(required = false) String id) {
         int index = getGradeIndex(id);
-        model.addAttribute("grade", index == Constants.NOT_FOUND ? new Grade() : gradeRepostory.getGrade(index));
+        model.addAttribute("grade", index == Constants.NOT_FOUND ? new Grade() : gradeService.getGrade(index));
         return "form";
     }
 
@@ -33,22 +34,22 @@ public class GradeController {
 
         int index = getGradeIndex(grade.getId());
         if (index == Constants.NOT_FOUND) {
-            gradeRepostory.addGrade(grade);
+            gradeService.addGrade(grade);
         } else {
-            gradeRepostory.updateGrade(grade, index);
+            gradeService.updateGrade(grade, index);
         }
         return "redirect:/grades";
     }
 
     @GetMapping("/grades")
     public String getGrades(Model model) {
-        model.addAttribute("grades", gradeRepostory.getGrades());
+        model.addAttribute("grades", gradeService.getGrades());
         return "grades";
     }
 
     public int getGradeIndex(String id) {
-        for (int i = 0; i < gradeRepostory.getGrades().size(); i++) {
-            if (gradeRepostory.getGrades().get(i).getId().equals(id)) return i;
+        for (int i = 0; i < gradeService.getGrades().size(); i++) {
+            if (gradeService.getGrades().get(i).getId().equals(id)) return i;
         }
         return Constants.NOT_FOUND;
     }
