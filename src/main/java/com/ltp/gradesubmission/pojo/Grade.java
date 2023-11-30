@@ -1,14 +1,18 @@
-package com.ltp.gradesubmission;
+package com.ltp.gradesubmission.pojo;
 
-import javax.validation.constraints.NotBlank;
 import java.util.UUID;
 
+import javax.validation.constraints.NotBlank;
+
+import com.ltp.gradesubmission.validation.Score;
+
 public class Grade {
-    @NotBlank(message = "Name can not be blank!")
+
+    @NotBlank(message = "Name cannot be blank")
     private String name;
-    @NotBlank(message = "Subject can not be blank!")
+    @NotBlank(message = "Subject cannot be blank")
     private String subject;
-    @Score(message = "Score must be a A, B, C ± OR F!")
+    @Score(message = "Score must be a letter grade")
     private String score;
     private String id;
 
