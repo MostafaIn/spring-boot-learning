@@ -18,8 +18,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 public class StoreController {
 
-    List<Item> items = new ArrayList<>();
-
     @GetMapping("/")
     public String getForm(Model model, @RequestParam(required = false) String id) {
         int index = getIndexFromId(id);
