@@ -8,8 +8,9 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
-import static org.mockito.Mockito.when;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -61,5 +62,17 @@ public class GradeServiceTest {
         String id = grade.getId();
         Grade result = gradeService.getGradeById(id);
         assertEquals(grade, result);
+    }
+
+    @Test
+    public void addGradeTest(){
+        Grade grade = new Grade("Mosy","Spring-boot","A");
+        when(gradeRepository.getGrades()).thenReturn(Arrays.asList(grade));
+        when(gradeRepository.getGrade(0)).thenReturn(grade);
+
+        Grade newGrade = new Grade ("Rohy","Radio Chemistry","A+");
+        gradeService.submitGrade(newGrade);
+
+        verify(gradeRepository, times(1)).addGrade(newGrade);
     }
 }
