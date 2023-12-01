@@ -38,4 +38,17 @@ public class GradeServiceTest {
         assertEquals("Mosy", result.get(0).getName());
         assertEquals("Radio Chemistry", result.get(1).getSubject());
     }
+
+    @Test
+    public void gradeIndexTest(){
+        Grade grade = new Grade("Mosy","Spring-boot","A");
+        when(gradeRepository.getGrades()).thenReturn(Arrays.asList(grade));
+        when(gradeRepository.getGrade(0)).thenReturn(grade);
+
+        int valid = gradeService.getGradeIndex(grade.getId());
+        int notFound = gradeService.getGradeIndex("123");
+
+        assertEquals(0, valid);
+        assertEquals(Constants.NOT_FOUND, notFound);
+    }
 }
