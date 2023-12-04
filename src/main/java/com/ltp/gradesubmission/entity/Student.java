@@ -1,15 +1,15 @@
 package com.ltp.gradesubmission.entity;
 
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
 @Table(name="student")
 public class Student {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
     private Long id;
     @Column(name="name", nullable = false)
