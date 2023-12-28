@@ -23,7 +23,7 @@ public class Course {
     @Column(name = "subject", nullable = false)
     private String subject;
     @NonNull
-    @Column(name = "code", nullable = false)
+    @Column(name = "code", nullable = false, unique = true)
     private String code;
     @NonNull
     @Column(name = "description", nullable = false)
