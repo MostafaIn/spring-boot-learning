@@ -1,9 +1,12 @@
 package com.ltp.gradesubmission.service;
 
 import java.util.List;
+import java.util.Optional;
 
+import ch.qos.logback.core.net.SyslogOutputStream;
 import com.ltp.gradesubmission.entity.Grade;
 import com.ltp.gradesubmission.entity.Student;
+import com.ltp.gradesubmission.exception.StudentNotFoundException;
 import com.ltp.gradesubmission.repository.StudentRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +19,12 @@ public class StudentServiceImpl implements StudentService {
     StudentRepository studentRepository;
     @Override
     public Student getStudent(Long id) {
-        printGrades(studentRepository.findById(id).get());
-        return studentRepository.findById(id).get();
+        Optional<Student> student = studentRepository.findById(id);
+        if(student.isPresent()){
+            return student.get();
+        }else{
+            throw new StudentNotFoundException(id);
+        }
     }
 
     @Override
@@ -34,12 +41,6 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public List<Student> getStudents() {
         return (List<Student>) studentRepository.findAll();
-    }
-
-    void printGrades(Student student){
-        for(Grade grade: student.getGrade()){
-            System.out.println(grade.getScore());
-        }
     }
 
 }
