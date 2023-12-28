@@ -16,6 +16,7 @@ import java.time.LocalDate;
 @SpringBootApplication
 public class GradeSubmissionApplication implements CommandLineRunner {
 
+
 	StudentRepository studentRepository;
 	CourseRepository courseRepository;
 	public static void main(String[] args) {
